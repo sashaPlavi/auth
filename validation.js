@@ -9,7 +9,8 @@ const registerValidation = (body) => {
   });
 
   const validation = shema.validate(body);
-  if (validation.error.details[0]) {
+
+  if (validation.error !== undefined) {
     const { message } = validation.error.details[0];
 
     return message;
