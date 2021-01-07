@@ -20,12 +20,13 @@ const registerValidation = (body) => {
 };
 const loginValidation = (body) => {
   const shema = Joi.object({
-    name: Joi.string().min(6).required(),
     email: Joi.string().min(6).required().email(),
     password: Joi.string().min(6).required(),
   });
+
   const validation = shema.validate(body);
-  if (validation.error.details[0]) {
+
+  if (validation.error !== undefined) {
     const { message } = validation.error.details[0];
 
     return message;
